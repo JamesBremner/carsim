@@ -1,33 +1,36 @@
 
 class cCar
 {
-    public:
-    void set( cFuelTable& table )
+public:
+    void set(cFuelTable *table)
     {
-        myFuelTable = &table;
+        myFuelTable = table;
     }
-    cFuelTable * fuelTable()
+    cFuelTable *fuelTable()
     {
         return myFuelTable;
     }
-    private:
-    cFuelTable * myFuelTable;
+
+private:
+    cFuelTable *myFuelTable;
 };
 
 class cSimulation
 {
-    public:
-    void set( cCar& car)
+public:
+    void set(cCar &car)
     {
         myCar = &car;
     }
-    void set( cDrivePlan& plan )
+    void set(cDrivePlan *plan)
     {
-        myPlan = &plan;
+        myPlan = plan;
     }
     void Run();
 
-    private:
-    cCar* myCar;
-    cDrivePlan* myPlan;
+    std::string titleText();
+
+private:
+    cCar *myCar;
+    cDrivePlan *myPlan;
 };

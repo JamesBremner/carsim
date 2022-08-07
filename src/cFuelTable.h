@@ -17,3 +17,5 @@ class cFuelTable
     private:
     int index( double speed, double acceleration ) const;
 };
+
+cFuelTable * GenerateFuelTableA();

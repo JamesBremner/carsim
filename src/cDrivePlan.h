@@ -20,7 +20,12 @@ class cDrivePlan
 {
     public:
     std::vector< cDrivePoint > myPlan;
+    std::string myName;
 
+    cDrivePlan( const std::string& name )
+    : myName( name )
+    {}
+    
     /** add drive plan point
      * @param[in] time secs
      * @param[in] speed km/hr
@@ -45,3 +50,6 @@ class cDrivePlan
 
     std::string text() const;
 };
+
+cDrivePlan * GenerateDrivePlanRaceTheLight();
+cDrivePlan * GenerateDrivePlanCautious();

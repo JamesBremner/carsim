@@ -32,30 +32,18 @@ private:
 
 main()
 {
-    cFuelTable ft;
-    for (int speed = 0; speed < 100; speed++)
-    {
-        ft.add(speed, 3, speed);
-    }
-
-    // std::cout << ft.text();
-    // if( ft.consumption(10,0) != 10 )
-    //     throw std::runtime_error(
-    //         "failed"    );
-    cDrivePlan dp;
-    dp.add(0, 0);
-    dp.add(10, 30);
-    std::cout << dp.text();
-    std::cout << "acceleration "
-              << dp.myPlan[0].acceleration(dp.myPlan[1])
-              << "\n";
-
+    // configure simulation
     cCar car;
-    car.set(ft);
+    car.set( GenerateFuelTableA() );
     cSimulation sim;
     sim.set(car);
-    sim.set(dp);
 
+    sim.set(GenerateDrivePlanCautious());
+
+    // run simulation
+    sim.Run();
+
+    sim.set(GenerateDrivePlanRaceTheLight());
     sim.Run();
 
     cGUI theGUI;
