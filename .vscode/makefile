@@ -24,7 +24,8 @@ CCflags = -std=c++17 $(OPT) -D_mingw_
 OBJ = \
 	$(ODIR)/main.o \
 	$(ODIR)/cFuelTable.o \
-	$(ODIR)/cDrivePlan.o
+	$(ODIR)/cDrivePlan.o \
+	$(ODIR)/cSimulation.o
 
 
 ### COMPILE

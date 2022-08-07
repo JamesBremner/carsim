@@ -30,5 +30,14 @@ class cDrivePlan
         myPlan.push_back({time,speed});
     }
 
+    double acceleration( int a, int b )
+    {
+        return myPlan[a].acceleration( myPlan[b] );
+    }
+    int deltaTime( int a, int b )
+    {
+        return myPlan[b].myTime - myPlan[a].myTime;
+    }
+
     std::string text() const;
 };
