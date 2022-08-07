@@ -30,6 +30,10 @@ class cDrivePlan
         myPlan.push_back({time,speed});
     }
 
+    int size() const
+    {
+        return (int)myPlan.size();
+    }
     double acceleration( int a, int b )
     {
         return myPlan[a].acceleration( myPlan[b] );
