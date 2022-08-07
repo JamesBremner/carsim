@@ -22,15 +22,18 @@ public:
     {
         myCar = &car;
     }
-    void set(cDrivePlan *plan)
+    void add(cDrivePlan *plan)
     {
-        myPlan = plan;
+        myPlan.push_back( plan );
     }
-    void Run();
+    void Run( const std::string& drivePlanName );
 
     std::string titleText();
 
 private:
     cCar *myCar;
-    cDrivePlan *myPlan;
+    std::vector< cDrivePlan * > myPlan;
+    cDrivePlan * thePlan;                   // the plan being simulated
+
+    cDrivePlan * findPlan( const std::string& drivePlanName );
 };

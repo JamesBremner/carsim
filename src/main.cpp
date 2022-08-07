@@ -38,13 +38,13 @@ main()
     cSimulation sim;
     sim.set(car);
 
-    sim.set(GenerateDrivePlanCautious());
+    sim.add(GenerateDrivePlanCautious());
+    sim.add(GenerateDrivePlanRaceTheLight());
 
-    // run simulation
-    sim.Run();
+    // run simulations
+    sim.Run( "Cautious");
 
-    sim.set(GenerateDrivePlanRaceTheLight());
-    sim.Run();
+    sim.Run( "Race the Light");
 
     cGUI theGUI;
     return 0;
