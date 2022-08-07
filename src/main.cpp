@@ -7,16 +7,9 @@
 #include <wex.h>
 #include "cStarterGUI.h"
 #include "cFuelTable.h"
+#include "cDrivePlan.h"
 
 
-
-class cDrivePlan
-{
-    public:
-    std::vector< std::pair<double,double>> myPlan;
-
-    void add( double time, double speed );
-};
 
 class cCar
 {
@@ -28,6 +21,7 @@ class cCar
     private:
     cFuelTable * myFuelTable;
 };
+
 
 class cGUI : public cStarterGUI
 {
@@ -57,6 +51,13 @@ main()
     if( ft.consumption(10,0) != 10 )
         throw std::runtime_error(
             "failed"    );
+    cDrivePlan dp;
+    dp.add(0,0);
+    dp.add(10,30);
+    std::cout << dp.text();
+    std::cout << "acceleration "
+        << dp.myPlan[0].acceleration(dp.myPlan[1] )
+        << "\n";
 
     cGUI theGUI;
     return 0;

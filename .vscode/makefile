@@ -23,7 +23,8 @@ CCflags = -std=c++17 $(OPT) -D_mingw_
 # sources
 OBJ = \
 	$(ODIR)/main.o \
-	$(ODIR)/cFuelTable.o
+	$(ODIR)/cFuelTable.o \
+	$(ODIR)/cDrivePlan.o
 
 
 ### COMPILE
