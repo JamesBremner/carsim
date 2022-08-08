@@ -15,6 +15,15 @@ private:
     cFuelTable *myFuelTable;
 };
 
+struct sResult
+{
+    int time;
+    double dist;
+    double speed;
+    double accel;
+    double fuel;
+};
+
 class cSimulation
 {
 public:
@@ -28,12 +37,22 @@ public:
     }
     void Run( const std::string& drivePlanName );
 
-    std::string titleText();
+    std::vector< std::string> DrivePlanNameList() const;
+
+    std::string titleText() const;
+    std::string resultText() const;
+
+    const std::vector<sResult>& results() const
+    {
+        return myResults;
+    }
+
 
 private:
     cCar *myCar;
     std::vector< cDrivePlan * > myPlan;
     cDrivePlan * thePlan;                   // the plan being simulated
+    std::vector<sResult> myResults;
 
     cDrivePlan * findPlan( const std::string& drivePlanName );
 };
