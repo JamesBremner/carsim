@@ -52,6 +52,7 @@ void cGUI::GUIconstruct()
     wxlbResults.text("");
     wxchPlots.move(600, 10, 100, 30);
     wxchPlots.add("Distance");
+    wxchPlots.add("Speed");
     wxchPlots.select(0);
     thePlot.move(500, 50, 450, 450);
     thePlot.XValues(0, 1);
@@ -67,7 +68,10 @@ void cGUI::simulate()
     std::vector<double> d1;
     for (auto &r : sim.results())
     {
-        d1.push_back(r.dist);
+        if( wxchPlots.selectedIndex() == 0 )
+            d1.push_back(r.dist);
+        else
+            d1.push_back(r.speed);
     }
     trace.set(d1);
     thePlot.update();
