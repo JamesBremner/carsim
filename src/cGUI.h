@@ -7,9 +7,8 @@
 #include <wex.h>
 #include "plot2d.h"
 #include "cStarterGUI.h"
-#include "cFuelTable.h"
-#include "cDrivePlan.h"
-#include "cSimulation.h"
+#include "sumo.h"
+
 
 class cGUI : public cStarterGUI
 {

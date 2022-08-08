@@ -1,4 +1,3 @@
-
 class cCar
 {
 public:
@@ -15,14 +14,7 @@ private:
     cFuelTable *myFuelTable;
 };
 
-struct sResult
-{
-    int time;
-    double dist;
-    double speed;
-    double accel;
-    double fuel;
-};
+
 
 class cSimulation
 {
@@ -34,6 +26,10 @@ public:
     void add(cDrivePlan *plan)
     {
         myPlan.push_back( plan );
+    }
+    void add(const cSpaceTimePoint& stp )
+    {
+        mySpaceTime.push_back( stp );
     }
     void Run( const std::string& drivePlanName );
 
@@ -52,6 +48,7 @@ private:
     cCar *myCar;
     std::vector< cDrivePlan * > myPlan;
     cDrivePlan * thePlan;                   // the plan being simulated
+    std::vector< cSpaceTimePoint > mySpaceTime;
     std::vector<sResult> myResults;
 
     cDrivePlan * findPlan( const std::string& drivePlanName );

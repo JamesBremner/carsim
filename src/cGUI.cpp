@@ -35,6 +35,8 @@ void cGUI::simConfig()
 
     sim.add(GenerateDrivePlanCautious());
     sim.add(GenerateDrivePlanRaceTheLight());
+
+    sim.add( cSpaceTimePoint( 100,7));
 }
 void cGUI::GUIconstruct()
 {

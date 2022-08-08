@@ -1,9 +1,8 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip> 
-#include "cFuelTable.h"
-#include "cDrivePlan.h"
-#include "cSimulation.h"
+
+#include "sumo.h"
 
 void cSimulation::Run(const std::string &drivePlanName)
 {
@@ -71,6 +70,12 @@ void cSimulation::Run(const std::string &drivePlanName)
             }
         }
     }
+
+    for( auto& stp : mySpaceTime )
+    {
+        stp.Calculate( myResults );
+    }
+
     std::cout << resultText();
 }
 
@@ -90,6 +95,15 @@ std::string cSimulation::resultText() const
            << std::setw(10) << r.accel
            << std::setw(10) << r.fuel
            << "\n";
+    }
+    ss << "\nSpace Time\n"
+        << std::setw(10) << "dist"
+        << std::setw(5) << "time"
+        << std::setw(15) << "time at dist"
+        << std::setw(15) << "speed at dist\n";
+    for( auto& p : mySpaceTime )
+    {
+        ss << p.text();
     }
     return ss.str();
 }
