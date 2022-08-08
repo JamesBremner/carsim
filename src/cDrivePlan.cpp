@@ -19,12 +19,17 @@ double cDrivePoint::acceleration(const cDrivePoint &other) const
 std::string cDrivePlan::text() const
 {
     std::stringstream ss;
-    ss << "Drive Plan: " << myName << "\n"
-       << "time\tspeed\n";
+    ss << "Drive Plan: " << myName << "\r\n"
+       << "time\t";
     for (auto &p : myPlan)
     {
-        ss << p.myTime << "\t" << p.mySpeed << "\n";
+        ss << p.myTime << "\t";
     }
+    ss <<  "\r\nspeed\t";
+    for (auto &p : myPlan) {
+        ss << p.mySpeed << "\t";
+    }
+    ss <<  "\r\n";
     return ss.str();
 }
 

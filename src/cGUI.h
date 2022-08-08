@@ -18,7 +18,9 @@ public:
 private:
     wex::label &wxlbPlans;
     wex::choice &myPlans;
+    wex::button &wxbnEdit;
     wex::button &wxbnRun;
+    wex::multiline &wxmlPlan;
     wex::label &wxlbResults;
     wex::choice &wxchPlots;
     wex::plot::plot &thePlot;
@@ -32,5 +34,6 @@ private:
 
     void GUIconstruct();
 
+    void edit();
     void simulate();
 };

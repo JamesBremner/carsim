@@ -43,6 +43,11 @@ public:
         return myResults;
     }
 
+    cDrivePlan* plan( int i )
+    {
+        return myPlan[ i ];
+    }
+
 
 private:
     cCar *myCar;
