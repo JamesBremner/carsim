@@ -7,7 +7,7 @@ cGUI::cGUI()
           {50, 50, 1000, 500}),
       wxlbPlans(wex::maker::make<wex::label>(fm)),
       myPlans(wex::maker::make<wex::choice>(fm)),
-      wxbnEdit(wex::maker::make<wex::button>(fm)),
+      wxbnSave(wex::maker::make<wex::button>(fm)),
       wxbnRun(wex::maker::make<wex::button>(fm)),
       wxmlPlan(wex::maker::make<wex::multiline>(fm)),
       wxlbResults(wex::maker::make<wex::label>(fm)),
@@ -28,10 +28,10 @@ cGUI::cGUI()
                        myPlans.selectedIndex())
                     ->text());
         });
-    wxbnEdit.events().click(
+    wxbnSave.events().click(
         [&]
         {
-            edit();
+            save();
         });
     wxbnRun.events().click(
         [&]
@@ -61,8 +61,8 @@ void cGUI::GUIconstruct()
     for (auto &p : sim.DrivePlanNameList())
         myPlans.add(p);
     myPlans.move(100, 10, 170, 30);
-    wxbnEdit.move(280, 10, 60, 30);
-    wxbnEdit.text("SAVE");
+    wxbnSave.move(280, 10, 60, 30);
+    wxbnSave.text("SAVE");
     wxbnRun.move(350, 10, 60, 30);
     wxbnRun.text("RUN");
     wxmlPlan.move(5, 50, 450, 60);
@@ -78,8 +78,12 @@ void cGUI::GUIconstruct()
     thePlot.XValues(0, 1);
     trace.color(0x0000FF);
 }
-void cGUI::edit()
+void cGUI::save()
 {
+    static cDrivePlan dp;
+    dp.parse( wxmlPlan.text() );
+    sim.add( &dp );
+    myPlans.add(dp.myName);
 }
 void cGUI::simulate()
 {

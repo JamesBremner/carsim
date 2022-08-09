@@ -26,6 +26,8 @@ public:
         : myName(name)
     {
     }
+    cDrivePlan()
+    {}
 
     /** add drive plan point
      * @param[in] time secs
@@ -40,6 +42,8 @@ public:
     {
         return (int)myPlan.size();
     }
+    
+    /// Calculate acceleration required to get from point a to point b
     double acceleration(int a, int b)
     {
         return myPlan[a].acceleration(myPlan[b]);
@@ -50,6 +54,8 @@ public:
     }
 
     std::string text() const;
+
+    void parse( const std::string& text );
 };
 
 cDrivePlan *GenerateDrivePlanRaceTheLight();

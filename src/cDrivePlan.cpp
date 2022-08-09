@@ -25,12 +25,48 @@ std::string cDrivePlan::text() const
     {
         ss << p.myTime << "\t";
     }
-    ss <<  "\r\nspeed\t";
-    for (auto &p : myPlan) {
+    ss << "\r\nspeed\t";
+    for (auto &p : myPlan)
+    {
         ss << p.mySpeed << "\t";
     }
-    ss <<  "\r\n";
+
     return ss.str();
+}
+
+void cDrivePlan::parse(const std::string &t)
+{
+    std::istringstream ss(t);
+    std::string token;
+    std::vector<int> vtime;
+
+    myName = "";
+    myPlan.clear();
+
+    ss >> token;
+    ss >> token;
+
+    while (true)
+    {
+        ss >> token;
+        if (token == "time")
+            break;
+        myName += " " + token;
+    }
+    while (true)
+    {
+        ss >> token;
+        if (token == "speed")
+            break;
+        vtime.push_back(atof(token.c_str()));
+    }
+    double speed;
+    for (int k = 0; k < vtime.size(); k++)
+    {
+        ss >> speed;
+        add(vtime[k], speed);
+    }
+    //std::cout << text();
 }
 
 cDrivePlan *GenerateDrivePlanRaceTheLight()
@@ -94,9 +130,9 @@ std::string cSpaceTimePoint::text() const
     }
     else
     {
-        ss << std::setw(15) << time_to_dist 
+        ss << std::setw(15) << time_to_dist
            << std::setw(15) << speed_at_distance
-            << "\n";
+           << "\n";
     }
     return ss.str();
 }
