@@ -24,7 +24,7 @@ cGUI::cGUI()
         [&]
         {
             wxmlPlan.text(
-                sim.plan(
+                car.plan(
                        myPlans.selectedIndex())
                     ->text());
         });
@@ -47,18 +47,16 @@ void cGUI::simConfig()
 {
     car.set(GenerateFuelTableA());
 
-    sim.set(car);
+    car.add(GenerateDrivePlanCautious());
+    car.add(GenerateDrivePlanRaceTheLight());
 
-    sim.add(GenerateDrivePlanCautious());
-    sim.add(GenerateDrivePlanRaceTheLight());
-
-    sim.add(cSpaceTimePoint(100, 7));
+    car.add(cSpaceTimePoint(100, 7));
 }
 void cGUI::GUIconstruct()
 {
     wxlbPlans.move(10, 10, 70, 30);
     wxlbPlans.text("Drive Plans");
-    for (auto &p : sim.DrivePlanNameList())
+    for (auto &p : car.DrivePlanNameList())
         myPlans.add(p);
     myPlans.move(100, 10, 170, 30);
     wxbnSave.move(280, 10, 60, 30);
@@ -82,18 +80,18 @@ void cGUI::save()
 {
     static cDrivePlan dp;
     dp.parse( wxmlPlan.text() );
-    sim.add( &dp );
+    car.add( &dp );
     myPlans.add(dp.myName);
 }
 void cGUI::simulate()
 {
-    sim.Run(myPlans.selectedText());
+    car.Run(myPlans.selectedText());
 
-    wxlbResults.text(sim.resultText());
+    wxlbResults.text(car.resultText());
     wxlbResults.update();
 
     std::vector<double> d1;
-    for (auto &r : sim.results())
+    for (auto &r : car.results())
     {
         if (wxchPlots.selectedIndex() == 0)
             d1.push_back(r.dist);

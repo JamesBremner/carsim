@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <sstream>
-#include "cFuelTable.h"
+#include "sumo.h"
 
 cFuelTable::cFuelTable()
     : myTable(1900)

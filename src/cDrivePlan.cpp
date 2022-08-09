@@ -85,9 +85,9 @@ cDrivePlan *GenerateDrivePlanCautious()
     return &dp;
 }
 
-void cSpaceTimePoint::Calculate(const std::vector<sResult> &results)
+void cSpaceTimePoint::Calculate(const resultStore &results)
 {
-    sResult less, more;
+    cResult less, more;
     for (auto &r : results)
     {
         if (r.dist < distance)

@@ -4,7 +4,7 @@
 
 #include "sumo.h"
 
-void cSimulation::Run(const std::string &drivePlanName)
+void cCar::Run(const std::string &drivePlanName)
 {
 
     myResults.clear();
@@ -49,12 +49,12 @@ void cSimulation::Run(const std::string &drivePlanName)
 
             // look up the fuel consumption, adding to total
             consumption +=
-                myCar->fuelTable()->consumption(
+                myFuelTable->consumption(
                     speed, acceleration);
 
             if (!(simt > 0 && t == 0))
             {
-                sResult result;
+                cResult result;
                 result.time = simt;
                 result.dist = totalDist + (int)dist;
                 result.speed = speed;
@@ -79,7 +79,7 @@ void cSimulation::Run(const std::string &drivePlanName)
     std::cout << resultText();
 }
 
-std::string cSimulation::resultText() const
+std::string cCar::resultText() const
 {
     std::stringstream ss;
     ss << std::setw(5) << "time"
@@ -108,7 +108,7 @@ std::string cSimulation::resultText() const
     return ss.str();
 }
 
-std::string cSimulation::titleText() const
+std::string cCar::titleText() const
 {
     std::stringstream ss;
     ss << "Simulation Run\n"
@@ -116,7 +116,7 @@ std::string cSimulation::titleText() const
     return ss.str();
 }
 
-cDrivePlan *cSimulation::findPlan(const std::string &drivePlanName)
+cDrivePlan *cCar::findPlan(const std::string &drivePlanName)
 {
     for (auto p : myPlan)
     {
@@ -126,7 +126,7 @@ cDrivePlan *cSimulation::findPlan(const std::string &drivePlanName)
     return 0;
 }
 
-std::vector<std::string> cSimulation::DrivePlanNameList() const
+std::vector<std::string> cCar::DrivePlanNameList() const
 {
     std::vector<std::string> list;
     for (auto p : myPlan)

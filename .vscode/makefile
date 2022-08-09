@@ -31,7 +31,7 @@ OBJ = \
 
 ### COMPILE
 
-$(ODIR)/%.o: %.cpp  
+$(ODIR)/%.o: %.cpp sumo.h
 	g++  $(CCflags) \
 	-c -o $@ $< $(INCS)
 

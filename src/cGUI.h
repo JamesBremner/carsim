@@ -27,7 +27,6 @@ private:
     wex::plot::trace &trace;
 
     cCar car;
-    cSimulation sim;
 
     // configure simulation
     void simConfig();
